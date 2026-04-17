@@ -31,8 +31,8 @@ public class Sistema {
                     double preco = sc.nextDouble();
 
                     Produto produto = new Produto();
-                    produto.nome = nome;
-                    produto.preco = preco;
+                    produto.setNome(nome);
+                    produto.setPreco(preco);
 
                     produtos.add(produto);
 
@@ -40,9 +40,14 @@ public class Sistema {
                     break;
 
                 case 2:
+                    if (produtos.isEmpty()) {
+                        System.out.println("Nenhum produto cadastrado.");
+                    } else {
                         for (Produto p : produtos) {
                             p.mostrarProduto();
                         }
+                    }
+                    break;
 
                 case 3:
                     System.out.println("Digite a porcentagem de desconto:");
@@ -63,7 +68,7 @@ public class Sistema {
                     boolean encontrado = false;
 
                     for (Produto p : produtos) {
-                        if(p.nome.equalsIgnoreCase(busca)){
+                        if(p.getNome().equalsIgnoreCase(busca)){
                             p.mostrarProduto();
                             encontrado = true;
                         }
@@ -82,7 +87,7 @@ public class Sistema {
                     boolean removido = false;
 
                     for (int i = 0; i < produtos.size(); i++) {
-                        if (produtos.get(i).nome.equalsIgnoreCase(remover )){
+                        if (produtos.get(i).getNome().equalsIgnoreCase(remover )){
                             produtos.remove(i);
                             removido = true;
                             System.out.println("Removido com sucesso!");
@@ -99,17 +104,19 @@ public class Sistema {
                     sc.nextLine();
                     String nomeAtualizado = sc.nextLine();
 
+
                     boolean atualizado = false;
 
                     for (Produto p : produtos) {
-                        if (p.nome.equalsIgnoreCase(nomeAtualizado)){
+                        if (p.getNome().equalsIgnoreCase(nomeAtualizado)){
 
                             System.out.println("Digite o novo preço:");
                             double novoPreco = sc.nextDouble();
 
-                            p.preco = novoPreco;
+                            p.setPreco(novoPreco);
 
                             System.out.println("Preço atualizado!");
+                            String nomeAtualizadoAtualizado = sc.nextLine();
                             atualizado = true;
                         }
                     }
